@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ashutosh Sharma | Aspiring Cloud Engineer</title>
+<meta name="description" content="IT student at NSUT building serverless systems on AWS with Terraform. Projects: LiftLens, SwimSync and SpikeCheck.">
+<link rel="canonical" href="https://ashutosharma2.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ashutosh Sharma | Aspiring Cloud Engineer">
+<meta property="og:description" content="IT student at NSUT building serverless systems on AWS with Terraform. Projects: LiftLens, SwimSync and SpikeCheck.">
+<meta property="og:url" content="https://ashutosharma2.github.io/">
+<meta property="og:image" content="https://ashutosharma2.github.io/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Gloock&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Layout: a calm black-and-white page. Colour only appears on paper notes taped to it. */
+:root{
+  color-scheme:light;
+  --paper:#fbfbf9;
+  --surface:#ffffff;
+  --ink:#141416;
+  --muted:#5c5b62;
+  --edge:#141416;
+  --rule:rgba(20,20,22,.16);
+  --hatch:rgba(20,20,22,.08);
+  --tape:rgba(226,222,208,.8);
+  --tape-edge:rgba(20,20,22,.16);
+
+  /* sticky notes: same paper in both themes */
+  --note-ink:#151515;
+  --note-rule:rgba(21,21,21,.32);
+  --n-yellow:#ffe45c;
+  --n-pink:#ff9ccb;
+  --n-blue:#8fd6ff;
+  --n-lime:#c6f25e;
+  --n-orange:#ffb45e;
+  --n-violet:#c9a8ff;
+
+  --f-display:"Gloock", "Iowan Old Style", Georgia, serif;
+  --f-title:"Archivo Black", "Arial Black", Impact, sans-serif;
+  --f-body:"Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --f-hand:"Caveat", "Bradley Hand", "Segoe Print", cursive;
+
+  --sh:6px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121214; --surface:#1b1b1f; --ink:#f2f0ea; --muted:#a8a6ae; --edge:#f2f0ea;
+    --rule:rgba(242,240,234,.18); --hatch:rgba(242,240,234,.09);
+    --tape:rgba(255,255,255,.3); --tape-edge:rgba(255,255,255,.22);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121214; --surface:#1b1b1f; --ink:#f2f0ea; --muted:#a8a6ae; --edge:#f2f0ea;
+  --rule:rgba(242,240,234,.18); --hatch:rgba(242,240,234,.09);
+  --tape:rgba(255,255,255,.3); --tape-edge:rgba(255,255,255,.22);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+a{color:inherit}
+svg{display:block}
+h1,h2,h3,p,ul,dl,dd,figure{margin:0}
+ul{padding:0;list-style:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+.wrap{max-width:1160px;margin-inline:auto;padding-left:max(clamp(16px,4vw,32px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px))}
+.eyebrow{font:500 12px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:2px solid var(--edge)}
+.bar{display:flex;align-items:center;gap:clamp(10px,2vw,24px);min-height:74px;padding-block:9px}
+.logo{flex:none;display:block;color:var(--ink)}
+.logo-mark{display:block;width:54px;height:54px;border:2.5px solid var(--edge);background:var(--surface);box-shadow:4px 4px 0 var(--edge);transition:transform .12s,box-shadow .12s}
+.logo:hover .logo-mark{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--edge)}
+.logo-nodes{fill:var(--surface)}
+.nav{flex:1;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:6px 6px 8px 4px;margin-block:-6px -8px}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;display:flex;align-items:center;gap:8px;padding:8px 12px;border:2px solid transparent;font:500 12.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.nav a:first-child{margin-left:auto}
+.nav a:hover{border-color:var(--edge)}
+.nav a.active{border-color:var(--edge);background:var(--surface);box-shadow:3px 3px 0 var(--edge)}
+.sq{flex:none;width:10px;height:10px;background:var(--c);border:1.5px solid var(--edge)}
+.icon-btn{flex:none;display:grid;place-items:center;width:40px;height:40px;padding:0;border:2px solid var(--edge);background:var(--surface);color:var(--ink);box-shadow:3px 3px 0 var(--edge);cursor:pointer;transition:transform .12s,box-shadow .12s}
+.icon-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
+.icon-btn svg{width:18px;height:18px}
+.t-sun{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .t-sun{display:block}
+  :root:not([data-theme="light"]) .t-moon{display:none}
+}
+:root[data-theme="dark"] .t-sun{display:block}
+:root[data-theme="dark"] .t-moon{display:none}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border:2px solid var(--edge);background:var(--surface);color:var(--ink);box-shadow:5px 5px 0 var(--edge);font:700 13px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--edge)}
+.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--edge)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn svg{width:16px;height:16px}
+
+/* ---------- sticky note base ---------- */
+.note{position:relative;background:var(--c);color:var(--note-ink);border:2px solid var(--edge);box-shadow:var(--sh) var(--sh) 0 var(--edge);transform:rotate(var(--tilt,0deg))}
+.note::before{content:"";position:absolute;top:-14px;left:50%;width:96px;height:26px;transform:translateX(-50%) rotate(var(--tape-tilt,-3deg));background:var(--tape);border-inline:1px dashed var(--tape-edge);pointer-events:none}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(40px,6vw,80px);align-items:center;padding-block:clamp(48px,8vw,96px) clamp(80px,10vw,128px)}
+.status{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;padding:9px 12px;border:2px solid var(--edge);background:var(--surface);box-shadow:3px 3px 0 var(--edge);font:500 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.blink{width:9px;height:9px;background:var(--n-lime);border:1.5px solid var(--edge);animation:blink 1.2s steps(1) infinite}
+.hello{margin-bottom:12px;font:500 14px/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font:400 clamp(3.1rem,10.5vw,7.25rem)/.9 var(--f-display);text-transform:uppercase;letter-spacing:-.005em}
+.typed{margin-top:22px;min-height:1.4em;font:500 clamp(16px,2.2vw,21px)/1.4 var(--f-mono);white-space:nowrap}
+.typed .pfx{color:var(--muted)}
+.caret{display:inline-block;width:.55em;height:1.05em;margin-left:2px;vertical-align:-.15em;background:var(--ink);animation:blink 1s steps(1) infinite}
+.hero .eyebrow{margin-top:36px}
+.lede{max-width:40ch;margin-top:6px;font-size:clamp(17px,1.6vw,19px)}
+.cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
+
+.portrait{position:relative;justify-self:end;width:min(400px,calc(100% - 14px))}
+.frame{padding:10px;border:2px solid var(--edge);background:var(--surface);box-shadow:12px 12px 0 var(--edge)}
+.photo{aspect-ratio:4/5;max-width:100%;display:grid;place-content:center;justify-items:center;gap:12px;border:1.5px solid var(--edge);background:repeating-linear-gradient(-45deg,var(--hatch) 0 2px,transparent 2px 12px)}
+.photo.has-img{display:block;background:none}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+/* ---------- sections ---------- */
+.section{padding-block:clamp(64px,9vw,112px);scroll-margin-top:calc(78px + env(safe-area-inset-top,0px))}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:clamp(44px,6vw,68px);padding-bottom:20px;border-bottom:2px solid var(--edge)}
+.sec-title{font:400 clamp(2.75rem,7vw,4.75rem)/.95 var(--f-display);text-transform:uppercase;overflow-wrap:anywhere}
+.sec-title.is-long{font-size:clamp(2rem,9vw,4.75rem)}
+.sec-title::after{content:"";display:inline-block;width:.2em;height:.2em;margin-left:.08em;background:var(--c);border:2px solid var(--edge);transform:rotate(-8deg)}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(48px,6vw,96px);align-items:start}
+.about-copy{display:grid;gap:18px;max-width:62ch;font-size:clamp(17px,1.5vw,19px)}
+.about-copy p:first-child{font-size:1.22em;line-height:1.45}
+.about-copy .btn{justify-self:start;margin-top:12px}
+.facts{--tilt:1.4deg;--tape-tilt:4deg;width:100%;max-width:420px;padding:32px 26px 24px}
+.facts h3{margin-bottom:14px;font:700 12px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.facts dl{display:grid;gap:12px}
+.facts dl div{padding-bottom:8px;border-bottom:1.5px dashed var(--note-rule)}
+.facts dl div:last-child{border-bottom:0;padding-bottom:0}
+.facts dt{font:500 11px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;opacity:.72}
+.facts dd{font:700 1.5rem/1.15 var(--f-hand)}
+
+/* experience, project and certification notes */
+.notes{display:grid;gap:52px 36px;padding-top:14px}
+.notes.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.notes.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{min-width:0;display:flex;flex-direction:column;gap:12px;padding:28px 24px 20px;transition:transform .2s ease,box-shadow .2s ease}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 11.5px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.rec{flex:none;padding:5px 8px;background:var(--note-ink);color:var(--c);font-weight:700}
+.card h3{margin-top:6px;font:400 clamp(1.25rem,2vw,1.5rem)/1.1 var(--f-title);text-transform:uppercase;text-wrap:balance}
+.card .kind{margin-top:-6px;font:500 12px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;opacity:.72}
+.card .sum{font-size:16px;line-height:1.5}
+.scrawl{align-self:flex-start;font:700 1.55rem/1.15 var(--f-hand);transform:rotate(-1.5deg);transform-origin:left center;text-decoration:underline wavy;text-decoration-thickness:1.5px;text-underline-offset:7px;text-decoration-skip-ink:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips li{padding:6px 8px;background:var(--note-ink);color:var(--c);font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.chips li:nth-child(odd){transform:rotate(-1deg)}
+.chips li:nth-child(even){transform:rotate(.8deg)}
+.card .foot{margin-top:auto;padding-top:10px;min-height:38px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.stamp{flex:none;margin-left:auto;padding:5px 8px;border:2px solid;outline:1px solid;outline-offset:2px;font:700 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;opacity:.78;transform:rotate(-7deg)}
+.open{appearance:none;padding:0;border:0;background:none;font:700 12px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;text-align:left;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.open::after{content:"";position:absolute;inset:0;z-index:1}
+.open:focus-visible{outline:none}
+.card.is-link{cursor:pointer}
+.card.is-link:hover{transform:rotate(0deg) translate(-3px,-3px);box-shadow:calc(var(--sh) + 4px) calc(var(--sh) + 4px) 0 var(--edge)}
+.card.is-link:has(.open:focus-visible){outline:3px solid var(--ink);outline-offset:6px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.gh{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:2px solid var(--note-ink);background:var(--c);color:var(--note-ink);box-shadow:3px 3px 0 var(--note-ink);font:700 11.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:transform .12s,box-shadow .12s}
+.gh:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--note-ink)}
+.gh:focus-visible{outline-color:var(--note-ink)}
+.gh svg{width:15px;height:15px;fill:currentColor}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
+.sk h3{display:flex;align-items:center;gap:10px;margin-bottom:16px;font:700 12px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags li{padding:9px 11px;border:1.5px solid var(--edge);background:var(--surface);font:500 13px/1 var(--f-mono)}
+
+/* contact */
+.contact-intro{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px 32px;margin-bottom:44px}
+.contact-intro p{max-width:56ch;font-size:clamp(17px,1.5vw,19px)}
+.contact-intro .status{margin-bottom:0}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.tile{min-width:0;min-height:196px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:28px 16px;border:2px solid var(--edge);background:var(--surface);box-shadow:var(--sh) var(--sh) 0 var(--edge);text-align:center;text-decoration:none;transition:transform .12s,box-shadow .12s}
+a.tile:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--edge)}
+.tile svg{flex:none;width:32px;height:32px;fill:currentColor}
+.t-text{display:grid;gap:8px;justify-items:center;min-width:0}
+.t-name{font:400 1.15rem/1 var(--f-title);letter-spacing:.02em;text-transform:uppercase}
+.t-sub{font:500 11.5px/1.3 var(--f-mono);letter-spacing:.08em;color:var(--muted);overflow-wrap:anywhere}
+.addr{font:500 13px/1.3 var(--f-mono);user-select:all;overflow-wrap:anywhere}
+.copy{padding:7px 10px;border:2px solid var(--edge);background:var(--paper);box-shadow:2px 2px 0 var(--edge);font:700 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.copy:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--edge)}
+
+/* footer */
+.site-foot{margin-top:24px;border-top:2px solid var(--edge)}
+.site-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-block:28px;font:500 12px/1.5 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.to-top{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:50;max-width:calc(100% - 32px);transform:translateX(-50%);padding:12px 16px;border:2px solid var(--edge);background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--n-yellow);font:500 12.5px/1.4 var(--f-mono);letter-spacing:.04em}
+
+/* ---------- project spec sheet ---------- */
+.sheet{width:min(720px,calc(100% - 32px));max-height:calc(100dvh - 48px);padding:0;border:2px solid var(--edge);background:var(--surface);color:var(--ink);box-shadow:12px 12px 0 var(--edge);overflow:auto}
+.sheet::backdrop{background:rgba(10,10,12,.55)}
+.sheet[open]{animation:pop .22s cubic-bezier(.2,1.2,.4,1)}
+.sheet-head{position:relative;display:grid;gap:10px;padding:24px 68px 22px 24px;border-bottom:2px solid var(--edge);background:var(--c);color:var(--note-ink)}
+.sheet-head .meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font:500 11.5px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.sheet-head h2{font:400 clamp(1.8rem,5vw,2.6rem)/1 var(--f-title);text-transform:uppercase}
+.sheet-head p{max-width:52ch}
+.sheet-actions{margin-top:6px}
+.sheet-close{position:absolute;top:16px;right:16px;width:38px;height:38px;display:grid;place-items:center;padding:0;border:2px solid var(--note-ink);background:var(--c);color:var(--note-ink);box-shadow:3px 3px 0 var(--note-ink);cursor:pointer}
+.sheet-close svg{width:16px;height:16px}
+.sheet-body{display:grid;gap:30px;padding:26px 24px 32px}
+.sheet-body h3{margin-bottom:12px;padding-bottom:8px;border-bottom:1.5px solid var(--rule)}
+.spec{display:grid;grid-template-columns:130px minmax(0,1fr);gap:10px 16px}
+.spec dt{font:500 11.5px/1.7 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.feat{display:grid;gap:10px}
+.feat li{position:relative;padding-left:26px}
+.feat li::before{content:"";position:absolute;left:0;top:.45em;width:12px;height:12px;background:var(--c);border:1.5px solid var(--edge)}
+.log{width:100%;border-collapse:collapse}
+.log td{padding:10px 0;border-top:1px solid var(--rule);vertical-align:top}
+.log td:first-child{width:64px;font:700 13px/1.6 var(--f-mono)}
+.result{font:700 2rem/1.1 var(--f-hand);transform:rotate(-1.2deg);transform-origin:left center}
+
+/* ---------- motion ---------- */
+@keyframes blink{50%{opacity:0}}@keyframes pop{from{transform:translateY(14px) rotate(-1deg) scale(.97)}to{transform:none}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .notes.three{grid-template-columns:minmax(0,1fr);max-width:580px;margin-inline:auto}
+  .about{grid-template-columns:minmax(0,1fr)}
+  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .portrait{justify-self:start;width:min(340px,calc(100% - 14px))}
+  .notes.two{grid-template-columns:minmax(0,1fr);max-width:580px;margin-inline:auto}
+}
+@media (max-width:540px){
+  .logo-mark{width:46px;height:46px;box-shadow:3px 3px 0 var(--edge)}
+  .skills{grid-template-columns:minmax(0,1fr)}
+  .tiles{grid-template-columns:minmax(0,1fr);gap:18px}
+  .tile{min-height:0;flex-direction:row;justify-content:flex-start;gap:18px;padding:18px;text-align:left}
+  .t-text{justify-items:start}
+  .tile-mail{flex-wrap:wrap}
+  .spec{grid-template-columns:minmax(0,1fr);gap:0}
+  .spec dd{margin-bottom:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="bar wrap">
+    <a class="logo" href="#home" aria-label="Ashutosh Sharma, back to top">
+      <svg class="logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="6" y="6" width="88" height="88" fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <g transform="translate(50 50) scale(.92) translate(-50.5 -50)" fill="none" stroke="currentColor">
+          <path d="M27 76A16 16 0 1 1 30.07 44.29A22 22 0 0 1 73.91 44A16 16 0 1 1 74 76Z" stroke-width="4.5" stroke-linejoin="round"/>
+          <path d="M26 54.5H30L34 60M26 65.5H30L34 60M34 60L50.5 66M75 54.5H71L67 60M75 65.5H71L67 60M67 60L50.5 66" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M35 76L50.5 46L66 76" stroke-width="6.5"/>
+          <g class="logo-nodes" stroke-width="3"><rect x="20" y="51.5" width="6" height="6"/><rect x="20" y="62.5" width="6" height="6"/><rect x="75" y="51.5" width="6" height="6"/><rect x="75" y="62.5" width="6" height="6"/><circle cx="50.5" cy="66" r="3.6"/></g>
+        </g>
+      </svg>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about"><span class="sq" style="--c:var(--n-orange)"></span>About</a>
+      <a href="#experience"><span class="sq" style="--c:var(--n-pink)"></span>Experience</a>
+      <a href="#projects"><span class="sq" style="--c:var(--n-yellow)"></span>Projects</a>
+      <a href="#certifications"><span class="sq" style="--c:var(--n-violet)"></span>Certifications</a>
+      <a href="#skills"><span class="sq" style="--c:var(--n-lime)"></span>Skills</a>
+      <a href="#contact"><span class="sq" style="--c:var(--n-blue)"></span>Contact</a>
+    </nav>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch colour theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" id="home">
+    <div>
+      <p class="status"><span class="blink" aria-hidden="true"></span>Open to cloud internships</p>
+      <p class="hello">Hi, I'm</p>
+      <h1>Ashutosh<br>Sharma</h1>
+      <p class="typed" aria-label="Aspiring cloud engineer, AWS and Terraform builder, IT student at NSUT"><span aria-hidden="true"><span class="pfx">&gt; </span><span id="typed">aspiring cloud engineer</span><span class="caret"></span></span></p>
+      <p class="eyebrow">Specialized in</p>
+      <p class="lede">Serverless systems on AWS, built with Terraform, tested end to end, and kept at $0 a month.</p>
+      <div class="cta">
+        <a class="btn btn-ink" href="Ashutosh_Sharma_Resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg>
+          Download résumé
+        </a>
+        <a class="btn" href="#contact">Say hello</a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <div class="frame">
+        <div class="photo has-img"><img src="hero.jpg" width="720" height="900" alt="Ashutosh Sharma laughing, crouched beside a happy white dog, with forested mountains behind them"></div>
+      </div>    </figure>
+  </section>
+
+  <section class="section wrap" id="about" style="--c:var(--n-orange)">
+    <div class="sec-head">
+      <h2 class="sec-title">About</h2>
+      <p class="eyebrow">Who I am</p>
+    </div>
+    <div class="about">
+      <div class="about-copy">
+        <p>I'm an IT student at NSUT in New Delhi, working toward cloud engineering on AWS.</p>
+        <p>I like building serverless systems with infrastructure as code. LiftLens runs on Lambda, DynamoDB and Cognito, with every resource in Terraform and cost guardrails that keep it at $0 a month. I write up each major decision as an ADR, with the alternatives I considered and the trade-offs.</p>
+        <p>I also do independent research. I re-examined a 2025 paper on forecasting CPU spikes for cloud provisioning, replicated it on the Alibaba 2018 cluster trace, and found two flaws in how it was evaluated.</p>
+        <p>I'm looking for a cloud engineering internship in Gurgaon or Delhi NCR.</p>
+        <a class="btn" href="#contact">Let's connect
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <aside class="note facts" style="--c:var(--n-orange)" aria-label="Quick facts">
+        <h3>Quick facts</h3>
+        <dl>
+          <div><dt>Based in</dt><dd>Gurgaon, Haryana</dd></div>
+          <div><dt>Studying</dt><dd>B.Tech IT at NSUT, class of 2028</dd></div>
+          <div><dt>School</dt><dd>High School Diploma, American International School of Mozambique</dd></div>
+          <div><dt>Practising</dt><dd>Data structures in Java on NeetCode</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap" id="experience" style="--c:var(--n-pink)">
+    <div class="sec-head">
+      <h2 class="sec-title">Experience</h2>
+      <p class="eyebrow">Research · internship · leadership</p>
+    </div>
+    <div class="notes three" id="work-grid"></div>
+  </section>
+
+  <section class="section wrap" id="projects" style="--c:var(--n-yellow)">
+    <div class="sec-head">
+      <h2 class="sec-title">Projects</h2>
+      <p class="eyebrow">Things I've built · open a note for details</p>
+    </div>
+    <div class="notes three" id="projects-grid"></div>
+  </section>
+
+  <section class="section wrap" id="certifications" style="--c:var(--n-violet)">
+    <div class="sec-head">
+      <h2 class="sec-title is-long">Certifications</h2>
+      <p class="eyebrow">The AWS track · in progress</p>
+    </div>
+    <div class="notes two" id="certs-grid"></div>
+  </section>
+
+  <section class="section wrap" id="skills" style="--c:var(--n-lime)">
+    <div class="sec-head">
+      <h2 class="sec-title">Skills</h2>
+      <p class="eyebrow">Tools I reach for</p>
+    </div>
+    <div class="skills">
+      <div class="sk">
+        <h3><span class="sq" style="--c:var(--n-orange)"></span>Cloud (AWS)</h3>
+        <ul class="tags"><li>Lambda</li><li>DynamoDB</li><li>Cognito</li><li>CloudWatch</li><li>SNS</li><li>Budgets</li><li>IAM</li><li>IAM Identity Center</li></ul>
+      </div>
+      <div class="sk">
+        <h3><span class="sq" style="--c:var(--n-violet)"></span>Infrastructure as code</h3>
+        <ul class="tags"><li>Terraform</li><li>Multi-stack layouts</li><li>Plan and apply review</li><li>Deletion protection</li><li>Tag-based targeting</li></ul>
+      </div>
+      <div class="sk">
+        <h3><span class="sq" style="--c:var(--n-pink)"></span>Security &amp; cost</h3>
+        <ul class="tags"><li>Least-privilege deploy role</li><li>JWT verification</li><li>Budget alerts</li><li>Automated kill switch</li></ul>
+      </div>
+      <div class="sk">
+        <h3><span class="sq" style="--c:var(--n-yellow)"></span>Languages &amp; data</h3>
+        <ul class="tags"><li>Python</li><li>pandas</li><li>TypeScript</li><li>JavaScript</li><li>Java</li><li>SQL</li><li>Bash</li><li>Excel</li></ul>
+      </div>
+      <div class="sk">
+        <h3><span class="sq" style="--c:var(--n-blue)"></span>Frameworks</h3>
+        <ul class="tags"><li>React</li><li>Vite</li><li>MediaPipe</li><li>FastAPI</li><li>PostgreSQL</li></ul>
+      </div>
+      <div class="sk">
+        <h3><span class="sq" style="--c:var(--n-lime)"></span>Practices</h3>
+        <ul class="tags"><li>Vitest</li><li>pytest</li><li>Architecture decision records</li><li>Git and pull requests</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="contact" style="--c:var(--n-blue)">
+    <div class="sec-head">
+      <h2 class="sec-title">Let's talk</h2>
+      <p class="eyebrow">Get in touch</p>
+    </div>
+    <div class="contact-intro">
+      <p>I'm looking for a cloud engineering internship in Gurgaon or Delhi NCR. Email is the fastest way to reach me.</p>
+      <p class="status"><span class="blink" aria-hidden="true"></span>Open to internships · Delhi NCR</p>
+    </div>
+    <div class="tiles">
+      <a class="tile" href="https://github.com/ashutosharma2" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57l-.01-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.69.82.57A12 12 0 0 0 12 .3"/></svg>
+        <span class="t-text"><span class="t-name">GitHub</span><span class="t-sub">@ashutosharma2</span></span>
+      </a>
+      <a class="tile" href="https://www.linkedin.com/in/ashutosharma2" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <span class="t-text"><span class="t-name">LinkedIn</span><span class="t-sub">/in/ashutosharma2</span></span>
+      </a>
+      <div class="tile tile-mail">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20v16H2V4zm2 2.4V18h16V6.4l-8 6.2-8-6.2zM5.6 6l6.4 5 6.4-5H5.6z"/></svg>
+        <span class="t-text"><span class="t-name">Email</span><span class="addr" id="addr">9sharmaa@gmail.com</span></span>
+        <button class="copy" id="copy" type="button">Copy</button>
+      </div>
+      <a class="tile" href="Ashutosh_Sharma_Resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 1h10l5 5v17H5V1zm9 1.8V7h4.2L14 2.8zM8 11v2h9v-2H8zm0 4v2h9v-2H8zm0-8v2h4V7H8z"/></svg>
+        <span class="t-text"><span class="t-name">Résumé</span><span class="t-sub">One page, PDF</span></span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Ashutosh Sharma</span>
+    <span>Gurgaon, Haryana</span>
+  </div>
+</footer>
+
+<button class="icon-btn to-top" id="to-top" type="button" aria-label="Back to top" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 20V5M5 11l7-7 7 7"/></svg>
+</button>
+<p class="toast" id="toast" role="status" hidden></p>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+  <div class="sheet-head">
+    <p class="meta"><span class="rec" id="sheet-rec"></span><span id="sheet-kind"></span></p>
+    <h2 id="sheet-title"></h2>
+    <p id="sheet-sum"></p>
+    <div class="sheet-actions" id="sheet-actions"></div>
+    <button class="sheet-close" id="sheet-close" type="button" aria-label="Close details">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
+    <section><h3 class="eyebrow">Spec sheet</h3><dl class="spec" id="sheet-spec"></dl></section>
+    <section><h3 class="eyebrow" id="sheet-feat-title">What it does</h3><ul class="feat" id="sheet-feat"></ul></section>
+    <section><h3 class="eyebrow">Change log</h3><table class="log"><tbody id="sheet-log"></tbody></table></section>
+    <section><h3 class="eyebrow">Result</h3><p class="result" id="sheet-win"></p></section>
+  </div>
+</dialog>
+
+<script>
+// Content from the résumé and the GitHub repos. `win` (the handwritten line) is optional.
+const WORK = [
+  { id: "WK-01", color: "pink", tilt: -1.1, when: "Sep 2026 – Present",
+    title: "Cloud Forecasting Research", kind: "Independent research",
+    sum: "Re-evaluated a 2025 paper on spike-aware cloud CPU forecasting and found two flaws in its published evaluation, both confirmed in the authors' code. Replicated the method on a 29 GB cluster trace.",
+    win: "same recall, ~30% less over-provisioning", tags: ["Python", "pandas", "Excel"], stamp: "Current" },
+  { id: "WK-02", color: "blue", tilt: 0.9, when: "May – Jul 2025",
+    title: "Digital Marketing Intern", kind: "Socialbent, Gurgaon",
+    sum: "Supported SEO research and content optimisation for client campaigns, helped plan social media content, and tracked campaign performance with the marketing team.",
+    tags: ["SEO", "Content planning", "Campaign tracking"], stamp: "Done" },
+  { id: "WK-03", color: "orange", tilt: -0.6, when: "Nov – Dec 2022",
+    title: "Student Lead & Organizer", kind: "School clothing drive, IB CAS",
+    sum: "Led a team of peer volunteers to run a school-wide clothing drive for local youth communities, and coordinated delivery with the school administration.",
+    tags: ["Leadership", "Logistics"], stamp: "Done" }
+];
+
+const PROJECTS = [
+  { id: "PR-01", color: "yellow", tilt: -1.2, when: "Jun 2026 – now",
+    repo: "https://github.com/ashutosharma2/LiftLens",
+    title: "LiftLens", kind: "Serverless app on AWS",
+    sum: "Turns a front-facing photo into a shoulder-to-waist ratio you can track. The photo is measured in the browser and never uploaded.",
+    win: "runs at $0 a month", tags: ["TypeScript", "Lambda", "DynamoDB", "Cognito", "Terraform"], stamp: "Building",
+    spec: { Role: "Solo: product, code and infrastructure", Timeline: "Jun 2026 – present", Frontend: "React, TypeScript, Vite, MediaPipe", Backend: "Python on AWS Lambda, DynamoDB, Cognito", Infrastructure: "Terraform: 25 resources across 3 stacks", Tests: "89 TypeScript and 112 Python tests" },
+    featuresTitle: "What it does",
+    features: [
+      "Pose detection with MediaPipe runs on the device, so body photos are never uploaded or stored",
+      "Explainable score: percent change against your own baseline, with a ±2.4% noise band calibrated from repeat photos",
+      "Photo-quality checks ask for a retake instead of showing a misleading number",
+      "Cost guardrails: a $1 budget alert, a kill-switch Lambda and a budget action that locks deploys",
+      "API secured with JWT verification against Cognito, tested with forged-signature and expired-token cases"
+    ],
+    log: [["A", "Cost guardrails first: budget alert, kill switch and deploy lock, deployed and tested before any app code"],
+          ["B", "Replaced a video-call segmenter that measured furniture as the body with the pose model's own outline"],
+          ["C", "Added photo checks after sideways and arms-touching shots gave confident wrong numbers"],
+          ["D", "Next: host on S3 and CloudFront, then CI/CD with GitHub Actions and OIDC"]] },
+  { id: "PR-02", color: "blue", tilt: 1.0, when: "Oct 2026 – now",
+    repo: "https://github.com/ashutosharma2/SwimSync",
+    title: "SwimSync", kind: "Booking backend",
+    sum: "A booking backend for swimming sessions that never confirms more places than a session has, and releases a cancelled place exactly once.",
+    win: "0 oversells, 30 requests at once", tags: ["Python", "FastAPI", "PostgreSQL", "pytest"], stamp: "Building",
+    spec: { Role: "Solo", Timeline: "Oct 2026 – present", Stack: "FastAPI, PostgreSQL, pytest", Tests: "28, including concurrency tests", Cost: "Built for ₹0 with fictional pools" },
+    featuresTitle: "What it does",
+    features: [
+      "A row lock makes the capacity check and the booking one atomic step",
+      "Idempotency keys make retries safe, and a double tap books only once",
+      "A cancel releases its place exactly once",
+      "Notifications go through an outbox written in the same transaction, with a worker that retries"
+    ],
+    log: [["A", "Started from a real incident: turned away from a session I had booked"],
+          ["B", "Desk research on the causes software can prevent, each claim labelled verified, inferred or unknown"],
+          ["C", "Local core: schema, booking, cancel, idempotency keys and outbox, with 28 tests"],
+          ["D", "Next: fault drills for a failed app instance and a lost database connection"]] },
+  { id: "PR-03", color: "lime", tilt: -0.8, when: "Sep 2026 – now",
+    repo: "https://github.com/ashutosharma2/SpikeCheck",
+    title: "SpikeCheck", kind: "Research replication",
+    sum: "Re-checks a 2025 paper on forecasting CPU spikes for cloud provisioning, rebuilt on the 29 GB Alibaba 2018 cluster trace.",
+    win: "2 flaws found in the paper's metrics", tags: ["Python", "pandas", "Forecasting"], stamp: "Ongoing",
+    spec: { Role: "Independent research", Timeline: "Sep 2026 – present", Paper: "Agulló et al., Future Generation Computer Systems, 2025", Data: "Alibaba 2018 trace: 29 GB, 5,946 containers", Method: "Authors' model, three seeds, scored under 5, 15 and 30-minute delays" },
+    featuresTitle: "What I found",
+    features: [
+      "The paper's over-provisioning metric divides by about 1e-10, so every forecaster scores between 10¹⁵ and 10¹⁷",
+      "Its spike precision rewards forecasts that lag. Both flaws are confirmed in the authors' code",
+      "With no delay, a plain classifier read at an upper quantile matches the method's recall with about 30% less over-provisioning",
+      "With a 15-minute delay the method does win, because its target looks ahead: spike coverage 0.57 against 0.44"
+    ],
+    log: [["A", "Reviewed how the paper computes its scores"],
+          ["B", "Streamed the trace into 5-minute steps and kept 5,946 long-running containers"],
+          ["C", "Reproduced the headline on the authors' evaluator: spike F1 0.42 → 0.65"],
+          ["D", "Tested looking ahead against holding across three seeds; looking ahead is what helps"]] }
+];
+
+const CERTS = [
+  { id: "CE-01", color: "violet", tilt: -1.0, when: "Next exam",
+    title: "AWS Certified Cloud Practitioner", kind: "Amazon Web Services",
+    sum: "Foundational AWS exam: core services, pricing and billing, security and the shared responsibility model.",
+    tags: ["AWS", "Cloud fundamentals"], stamp: "Preparing" },
+  { id: "CE-02", color: "orange", tilt: 1.1, when: "After CE-01",
+    title: "AWS Certified Solutions Architect – Associate", kind: "Amazon Web Services",
+    sum: "Designing secure, resilient and cost-aware architectures on AWS.",
+    tags: ["AWS", "Architecture"], stamp: "Planned" }
+];
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const tapeTilts = [-3, 2.5, -1.5, 3];
+
+const GH_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57l-.01-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.69.82.57A12 12 0 0 0 12 .3"/></svg>`;
+
+function repoLink(p) {
+  const attrs = p.repo
+    ? `href="${esc(p.repo)}" target="_blank" rel="noopener"`
+    : `href="#" data-todo="the GitHub link for ${esc(p.title)}"`;
+  return `<a class="gh" ${attrs}>${GH_ICON}View on GitHub</a>`;
+}
+
+function noteCard(item, i, kind) {
+  let action = "";
+  if (kind === "project") action = `<div class="actions">${repoLink(item)}<button class="open" type="button" data-id="${esc(item.id)}">Spec sheet <span aria-hidden="true">→</span></button></div>`;
+  if (kind === "cert" && item.verify) action = `<a class="open" href="${esc(item.verify)}" target="_blank" rel="noopener">Verify credential <span aria-hidden="true">→</span></a>`;
+  return `<article class="note card${action ? " is-link" : ""}" style="--c:var(--n-${item.color});--tilt:${item.tilt}deg;--tape-tilt:${tapeTilts[i % tapeTilts.length]}deg">
+    <div class="top"><span class="rec">${esc(item.id)}</span><span>${esc(item.when)}</span></div>
+    <h3>${esc(item.title)}</h3>
+    <p class="kind">${esc(item.kind)}</p>
+    <p class="sum">${esc(item.sum)}</p>
+    ${item.win ? `<p class="scrawl">${esc(item.win)}</p>` : ""}
+    <ul class="chips" aria-label="Tools">${item.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+    <div class="foot">${action}<span class="stamp">${esc(item.stamp)}</span></div>
+  </article>`;
+}
+
+$("#work-grid").innerHTML = WORK.map((w, i) => noteCard(w, i, "work")).join("");
+$("#projects-grid").innerHTML = PROJECTS.map((p, i) => noteCard(p, i, "project")).join("");
+$("#certs-grid").innerHTML = CERTS.map((c, i) => noteCard(c, i, "cert")).join("");
+
+// Project spec sheet
+const sheet = $("#sheet");
+function openSheet(id) {
+  const p = PROJECTS.find((x) => x.id === id);
+  if (!p) return;
+  sheet.style.setProperty("--c", `var(--n-${p.color})`);
+  $("#sheet-rec").textContent = p.id;
+  $("#sheet-kind").textContent = `${p.kind} · ${p.when}`;
+  $("#sheet-title").textContent = p.title;
+  $("#sheet-sum").textContent = p.sum;
+  $("#sheet-actions").innerHTML = repoLink(p);
+  $("#sheet-spec").innerHTML = Object.entries(p.spec).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  $("#sheet-feat-title").textContent = p.featuresTitle || "What it does";
+  $("#sheet-feat").innerHTML = p.features.map((f) => `<li>${esc(f)}</li>`).join("");
+  $("#sheet-log").innerHTML = p.log.map(([rev, note]) => `<tr><td>Rev ${esc(rev)}</td><td>${esc(note)}</td></tr>`).join("");
+  $("#sheet-win").textContent = p.win;
+  sheet.showModal();
+  sheet.scrollTop = 0;
+}
+$("#projects-grid").addEventListener("click", (e) => {
+  const btn = e.target.closest(".open");
+  if (btn) openSheet(btn.dataset.id);
+});
+$("#sheet-close").addEventListener("click", () => sheet.close());
+sheet.addEventListener("click", (e) => { if (e.target === sheet) sheet.close(); });
+
+// Typed role line
+const roles = ["aspiring cloud engineer", "AWS + Terraform builder", "IT student at NSUT"];
+const typedEl = $("#typed");
+if (!reduceMotion) {
+  let r = 0, i = roles[0].length, deleting = true;
+  const tick = () => {
+    const word = roles[r];
+    if (deleting) {
+      i--;
+      typedEl.textContent = word.slice(0, i);
+      if (i === 0) { deleting = false; r = (r + 1) % roles.length; }
+      setTimeout(tick, 35);
+    } else {
+      i++;
+      typedEl.textContent = word.slice(0, i);
+      if (i === word.length) { deleting = true; setTimeout(tick, 2400); }
+      else setTimeout(tick, 70);
+    }
+  };
+  setTimeout(tick, 2600);
+}
+
+// Theme toggle
+const root = document.documentElement;
+const darkMq = matchMedia("(prefers-color-scheme: dark)");
+try {
+  const saved = localStorage.getItem("pf-theme");
+  if (saved === "dark" || saved === "light") root.dataset.theme = saved;
+} catch (e) {}
+const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : darkMq.matches);
+const themeBtn = $("#theme");
+const syncThemeLabel = () => themeBtn.setAttribute("aria-label", isDark() ? "Switch to light theme" : "Switch to dark theme");
+syncThemeLabel();
+darkMq.addEventListener?.("change", syncThemeLabel);
+themeBtn.addEventListener("click", () => {
+  const next = isDark() ? "light" : "dark";
+  root.dataset.theme = next;
+  try { localStorage.setItem("pf-theme", next); } catch (e) {}
+  syncThemeLabel();
+});
+
+// Highlight the nav link for the section on screen: the last one whose top has
+// passed 40% of the window. Measured on scroll, because browsers ignore an
+// IntersectionObserver's rootMargin when the page is embedded in another site.
+const navLinks = [...document.querySelectorAll(".nav a")];
+const nav = $(".nav");
+const sections = [...document.querySelectorAll("main > section[id]")];
+let currentId = null;
+function updateActive() {
+  const line = window.innerHeight * 0.4;
+  let id = null;
+  for (const s of sections) if (s.getBoundingClientRect().top <= line) id = s.id;
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  if (atBottom) id = sections[sections.length - 1].id;
+  if (id === currentId) return;
+  currentId = id;
+  let active = null;
+  navLinks.forEach((a) => {
+    const on = a.hash === "#" + id;
+    a.classList.toggle("active", on);
+    if (on) active = a;
+  });
+  if (active && nav.scrollWidth > nav.clientWidth) nav.scrollTo({ left: active.offsetLeft - 24, behavior: reduceMotion ? "auto" : "smooth" });
+}
+let spyQueued = false;
+addEventListener("scroll", () => {
+  if (spyQueued) return;
+  spyQueued = true;
+  requestAnimationFrame(() => { spyQueued = false; updateActive(); });
+}, { passive: true });
+addEventListener("resize", updateActive);
+updateActive();
+
+// Back to top
+const toTop = $("#to-top");
+const onScroll = () => { toTop.hidden = window.scrollY < 700; };
+addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+
+// Toasts for links that still need a target, and the copy button
+const toastEl = $("#toast");
+let toastTimer;
+function toast(msg) {
+  toastEl.textContent = msg;
+  toastEl.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toastEl.hidden = true; }, 2600);
+}
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-todo]");
+  if (!link) return;
+  e.preventDefault();
+  toast(`Still to add: ${link.dataset.todo}`);
+});
+
+const addr = $("#addr");
+$("#copy").addEventListener("click", () => {
+  const text = addr.textContent.trim();
+  const fallback = () => {
+    const range = document.createRange();
+    range.selectNodeContents(addr);
+    const sel = getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    toast("Selected. Press Ctrl+C or ⌘C to copy");
+  };
+  try {
+    navigator.clipboard.writeText(text).then(() => toast("Email address copied"), fallback);
+  } catch (e) {
+    fallback();
+  }
+});
+</script>
+</body>
+</html>

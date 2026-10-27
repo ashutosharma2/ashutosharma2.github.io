@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .bg{fill:#fff}.ink{stroke:#141416}.node{fill:#fff}
+    @media (prefers-color-scheme: dark){.bg{fill:#1b1b1f}.ink{stroke:#f2f0ea}.node{fill:#1b1b1f}}
+  </style>
+  <rect class="bg ink" x="4" y="4" width="92" height="92" stroke-width="7"/>
+  <g class="ink" transform="translate(50 50) scale(1.02) translate(-50.5 -50)" fill="none">
+    <path d="M27 76A16 16 0 1 1 30.07 44.29A22 22 0 0 1 73.91 44A16 16 0 1 1 74 76Z" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M26 54.5H30L34 60M26 65.5H30L34 60M34 60L50.5 66M75 54.5H71L67 60M75 65.5H71L67 60M67 60L50.5 66" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M35 76L50.5 46L66 76" stroke-width="7"/>
+    <g class="node" stroke-width="3"><rect x="20" y="51.5" width="6" height="6"/><rect x="20" y="62.5" width="6" height="6"/><rect x="75" y="51.5" width="6" height="6"/><rect x="75" y="62.5" width="6" height="6"/><circle cx="50.5" cy="66" r="3.6"/></g>
+  </g>
+</svg>
