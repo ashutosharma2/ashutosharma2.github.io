@@ -467,7 +467,7 @@ const WORK = [
   { id: "WK-01", color: "pink", tilt: -1.1, when: "Sep 2026 – Present",
     title: "Cloud Forecasting Research", kind: "Independent research",
     sum: "Re-evaluated a 2025 paper on spike-aware cloud CPU forecasting and found two flaws in its published evaluation, both confirmed in the authors' code. Replicated the method on a 29 GB cluster trace.",
-    win: "same recall, ~30% less over-provisioning", tags: ["Python", "pandas", "Excel"], stamp: "Current" },
+    win: "no delay: same recall, 14–29% less over-provisioning", tags: ["Python", "pandas", "Excel"], stamp: "Current" },
   { id: "WK-02", color: "blue", tilt: 0.9, when: "May – Jul 2025",
     title: "Digital Marketing Intern", kind: "Socialbent, Gurgaon",
     sum: "Supported SEO research and content optimisation for client campaigns, helped plan social media content, and tracked campaign performance with the marketing team.",
@@ -524,12 +524,12 @@ const PROJECTS = [
     features: [
       "The paper's over-provisioning metric divides by about 1e-10, so every forecaster scores between 10¹⁵ and 10¹⁷",
       "Its spike precision rewards forecasts that lag. Both flaws are confirmed in the authors' code",
-      "With no delay, a plain classifier read at an upper quantile matches the method's recall with about 30% less over-provisioning",
-      "With a 15-minute delay the method does win, because its target looks ahead: spike coverage 0.57 against 0.44"
+      "With no delay, a plain classifier read at an upper quantile matches the method's recall with 14 to 29% less over-provisioning across three seeds",
+      "With a 15-minute delay the method does win, because its target looks ahead: spike coverage 0.57 against 0.43"
     ],
     log: [["A", "Reviewed how the paper computes its scores"],
           ["B", "Streamed the trace into 5-minute steps and kept 5,946 long-running containers"],
-          ["C", "Reproduced the headline on the authors' evaluator: spike F1 0.42 → 0.65"],
+          ["C", "Reproduced the headline on the authors' evaluator: spike F1 0.41 → 0.68"],
           ["D", "Tested looking ahead against holding across three seeds; looking ahead is what helps"]] }
 ];
 
