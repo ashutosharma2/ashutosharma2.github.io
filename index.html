@@ -324,7 +324,7 @@ a.tile:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--edge)}
     <div class="about">
       <div class="about-copy">
         <p>I'm an IT student at NSUT in New Delhi, working toward cloud engineering on AWS.</p>
-        <p>I like building serverless systems with infrastructure as code. LiftLens runs on Lambda, DynamoDB and Cognito, with every resource in Terraform and cost guardrails that keep it at $0 a month. I write up each major decision as an ADR, with the alternatives I considered and the trade-offs.</p>
+        <p>I like building serverless systems with infrastructure as code. LiftLens runs on Lambda, DynamoDB and Cognito, with every resource in Terraform. It costs $0 a month because DynamoDB uses provisioned capacity inside the free tier, and a tested kill switch limits the damage if that changes. I write up each major decision as an ADR, with the alternatives I considered and the trade-offs.</p>
         <p>I also do independent research. I re-examined a 2025 paper on forecasting CPU spikes for cloud provisioning, replicated it on the Alibaba 2018 cluster trace, and found two flaws in how it was evaluated.</p>
         <p>I'm looking for a cloud engineering internship in Gurgaon or Delhi NCR.</p>
         <a class="btn" href="#contact">Let's connect
