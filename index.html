@@ -362,9 +362,9 @@ a.tile:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--edge)}
   <section class="section wrap" id="certifications" style="--c:var(--n-violet)">
     <div class="sec-head">
       <h2 class="sec-title is-long">Certifications</h2>
-      <p class="eyebrow">The AWS track · in progress</p>
+      <p class="eyebrow">1 earned · AWS track in progress</p>
     </div>
-    <div class="notes two" id="certs-grid"></div>
+    <div class="notes three" id="certs-grid"></div>
   </section>
 
   <section class="section wrap" id="skills" style="--c:var(--n-lime)">
@@ -534,11 +534,15 @@ const PROJECTS = [
 ];
 
 const CERTS = [
-  { id: "CE-01", color: "violet", tilt: -1.0, when: "Next exam",
+  { id: "CE-01", color: "lime", tilt: 1.2, when: "Oct 2026",
+    title: "Cyber Security and Privacy", kind: "NPTEL · IIT Madras",
+    sum: "Elite + Gold certificate, scored 93%.",
+    win: "top 1% of 20,949", tags: ["Cyber security", "Privacy"], stamp: "Earned" },
+  { id: "CE-02", color: "violet", tilt: -1.0, when: "Next exam",
     title: "AWS Certified Cloud Practitioner", kind: "Amazon Web Services",
     sum: "Foundational AWS exam: core services, pricing and billing, security and the shared responsibility model.",
     tags: ["AWS", "Cloud fundamentals"], stamp: "Preparing" },
-  { id: "CE-02", color: "orange", tilt: 1.1, when: "After CE-01",
+  { id: "CE-03", color: "orange", tilt: 1.1, when: "After CE-02",
     title: "AWS Certified Solutions Architect – Associate", kind: "Amazon Web Services",
     sum: "Designing secure, resilient and cost-aware architectures on AWS.",
     tags: ["AWS", "Architecture"], stamp: "Planned" }
