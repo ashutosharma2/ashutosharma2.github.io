@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ashutosh Sharma | Aspiring Cloud Engineer</title>
-<meta name="description" content="IT student at NSUT building serverless systems on AWS with Terraform. Projects: LiftLens, SwimSync and SpikeCheck.">
+<meta name="description" content="IT student at NSUT building serverless systems on AWS with Terraform. Projects: LiftLens, SwimSync, SpikeCheck and Wisecow.">
 <link rel="canonical" href="https://ashutosharma2.github.io/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ashutosh Sharma | Aspiring Cloud Engineer">
-<meta property="og:description" content="IT student at NSUT building serverless systems on AWS with Terraform. Projects: LiftLens, SwimSync and SpikeCheck.">
+<meta property="og:description" content="IT student at NSUT building serverless systems on AWS with Terraform. Projects: LiftLens, SwimSync, SpikeCheck and Wisecow.">
 <meta property="og:url" content="https://ashutosharma2.github.io/">
 <meta property="og:image" content="https://ashutosharma2.github.io/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -356,7 +356,7 @@ a.tile:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--edge)}
       <h2 class="sec-title">Projects</h2>
       <p class="eyebrow">Things I've built · open a note for details</p>
     </div>
-    <div class="notes three" id="projects-grid"></div>
+    <div class="notes two" id="projects-grid"></div>
   </section>
 
   <section class="section wrap" id="certifications" style="--c:var(--n-violet)">
@@ -378,8 +378,8 @@ a.tile:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--edge)}
         <ul class="tags"><li>Lambda</li><li>DynamoDB</li><li>Cognito</li><li>CloudWatch</li><li>SNS</li><li>Budgets</li><li>IAM</li><li>IAM Identity Center</li></ul>
       </div>
       <div class="sk">
-        <h3><span class="sq" style="--c:var(--n-violet)"></span>Infrastructure as code</h3>
-        <ul class="tags"><li>Terraform</li><li>Multi-stack layouts</li><li>Plan and apply review</li><li>Deletion protection</li><li>Tag-based targeting</li></ul>
+        <h3><span class="sq" style="--c:var(--n-violet)"></span>Infrastructure &amp; DevOps</h3>
+        <ul class="tags"><li>Terraform</li><li>Docker</li><li>Kubernetes</li><li>GitHub Actions</li><li>Prometheus</li><li>Grafana</li><li>nginx</li><li>HAProxy</li><li>Multi-stack layouts</li><li>Plan and apply review</li><li>Deletion protection</li><li>Tag-based targeting</li></ul>
       </div>
       <div class="sk">
         <h3><span class="sq" style="--c:var(--n-pink)"></span>Security &amp; cost</h3>
@@ -496,24 +496,30 @@ const PROJECTS = [
     log: [["A", "Cost guardrails first: budget alert, kill switch and deploy lock, deployed and tested before any app code"],
           ["B", "Replaced a video-call segmenter that measured furniture as the body with the pose model's own outline"],
           ["C", "Added photo checks after sideways and arms-touching shots gave confident wrong numbers"],
-          ["D", "Next: host on S3 and CloudFront, then CI/CD with GitHub Actions and OIDC"]] },
+          ["D", "Added automated tests and checks on every pull request"],
+          ["E", "Next: confirm the waist height on fresh photos, then host on S3 and CloudFront"]] },
   { id: "PR-02", color: "blue", tilt: 1.0, when: "Oct 2026 – now",
     repo: "https://github.com/ashutosharma2/SwimSync",
-    title: "SwimSync", kind: "Booking backend",
-    sum: "A booking backend for swimming sessions that never confirms more places than a session has, and releases a cancelled place exactly once.",
-    win: "0 oversells, 30 requests at once", tags: ["Python", "FastAPI", "PostgreSQL", "pytest"], stamp: "Building",
-    spec: { Role: "Solo", Timeline: "Oct 2026 – present", Stack: "FastAPI, PostgreSQL, pytest", Tests: "28, including concurrency tests", Cost: "Built for ₹0 with fictional pools" },
+    title: "SwimSync", kind: "Full-stack booking system",
+    sum: "A booking app for swimming sessions that never confirms more places than a session has, tested against killed servers and database failures.",
+    win: "0 oversells, 30 requests at once", tags: ["FastAPI", "PostgreSQL", "React", "Kubernetes", "Prometheus"], stamp: "Polishing",
+    spec: { Role: "Solo", Timeline: "Oct 2026 – present", Frontend: "React, TypeScript", Backend: "FastAPI, PostgreSQL", Infrastructure: "Docker, Kubernetes (kind), Prometheus, Grafana. AWS design in Terraform, validated but never applied", Tests: "60 backend and 37 frontend tests, run in GitHub Actions", Cost: "Built for ₹0 with fictional pools" },
     featuresTitle: "What it does",
     features: [
       "A row lock makes the capacity check and the booking one atomic step",
       "Idempotency keys make retries safe, and a double tap books only once",
       "A cancel releases its place exactly once",
-      "Notifications go through an outbox written in the same transaction, with a worker that retries"
+      "Notifications go through an outbox written in the same transaction, with a worker that retries",
+      "Swimmer and operator screens, with every operator change kept in an audit log",
+      "Three fault drills passed: a killed app instance, database failures, and a Kubernetes rolling restart that handled 3,872 operations with none failing"
     ],
     log: [["A", "Started from a real incident: turned away from a session I had booked"],
           ["B", "Desk research on the causes software can prevent, each claim labelled verified, inferred or unknown"],
           ["C", "Local core: schema, booking, cancel, idempotency keys and outbox, with 28 tests"],
-          ["D", "Next: fault drills for a failed app instance and a lost database connection"]] },
+          ["D", "Ran fault drills: killed an app instance, then made the database refuse connections, slow down and lose a commit reply"],
+          ["E", "Added swimmer and operator screens, then ran it on a local Kubernetes cluster with Prometheus and Grafana"],
+          ["F", "Stopped requests dropping during rolling restarts: 4 errors in 308 requests before, none in 291 after"],
+          ["G", "Next: finish the drill write-ups and the project story"]] },
   { id: "PR-03", color: "lime", tilt: -0.8, when: "Sep 2026 – now",
     repo: "https://github.com/ashutosharma2/SpikeCheck",
     title: "SpikeCheck", kind: "Research replication",
@@ -530,7 +536,26 @@ const PROJECTS = [
     log: [["A", "Reviewed how the paper computes its scores"],
           ["B", "Streamed the trace into 5-minute steps and kept 5,946 long-running containers"],
           ["C", "Reproduced the headline on the authors' evaluator: spike F1 0.41 → 0.68"],
-          ["D", "Tested looking ahead against holding across three seeds; looking ahead is what helps"]] }
+          ["D", "Tested looking ahead against holding across three seeds; looking ahead is what helps"],
+          ["E", "Tested computing the hold instead of learning it: three of four pre-set checks passed, so the full hypothesis isn't supported"]] },
+  { id: "PR-04", color: "orange", tilt: 0.9, when: "Nov 2026",
+    repo: "https://github.com/ashutosharma2/wisecow",
+    title: "Wisecow", kind: "Kubernetes and CI/CD",
+    sum: "Takes an existing Bash web app and containerises it, deploys it on Kubernetes behind TLS, and automates the build and deployment.",
+    win: "every push deployed and tested", tags: ["Docker", "Kubernetes", "GitHub Actions", "cert-manager", "Bash"], stamp: "Done",
+    spec: { Role: "Solo, for the Accuknox DevOps Trainee assessment", Timeline: "Nov 2026", Cluster: "Two replicas on kind behind a Traefik Ingress", TLS: "cert-manager with a private CA, renewed automatically", Pipeline: "GitHub Actions: lint, build for amd64 and arm64, push to GHCR, deploy, verify" },
+    featuresTitle: "What it does",
+    features: [
+      "Runs as a non-root user with a read-only root filesystem and no capabilities",
+      "Serves HTTPS through the Ingress and redirects plain HTTP to it",
+      "A NetworkPolicy lets only Traefik connect to the app",
+      "The pipeline deploys each image by digest to a kind cluster in the runner, then smoke-tests it",
+      "Stores no credentials: registry logins use the job's own GITHUB_TOKEN"
+    ],
+    log: [["A", "Built the container image on Debian slim, running as a non-root user"],
+          ["B", "Terminated TLS at the Ingress, with certificates from cert-manager"],
+          ["C", "Added the pipeline that builds, deploys and verifies every push to main"],
+          ["D", "Wrote two Bash scripts: a system health monitor and an app health checker"]] }
 ];
 
 const CERTS = [
